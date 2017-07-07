@@ -23,14 +23,17 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public @Data class Tweet {
+public @Data
+class Tweet {
 
-    @Id
-    @GeneratedValue
-    private Long id;
+  @Id
+  @GeneratedValue
+  private Long id;
 
-    @ManyToOne
-    private User author;
+  @ManyToOne
+  private User author;
 
-    private String content;
+  private Integer likes;
+
+  private String content;
 }

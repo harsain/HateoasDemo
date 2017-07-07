@@ -13,13 +13,14 @@ import org.springframework.hateoas.ResourceSupport;
  * Created by harsain on 4/7/17.
  */
 public class UserResource extends ResourceSupport {
-  private final User user;
 
+  private final User user;
 
   public UserResource(User user) {
     this.user = user;
     this.add(linkTo(methodOn(UserController.class).getUser(user.getId())).withSelfRel());
-    this.add(linkTo(methodOn(TweetController.class, user.getName()).getAll(user.getName())).withRel("all-tweets"));
+    this.add(linkTo(methodOn(TweetController.class, user.getName()).getAll(user.getName()))
+        .withRel("all-tweets"));
   }
 
   public User getUser() {

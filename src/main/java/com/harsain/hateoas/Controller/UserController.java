@@ -32,13 +32,15 @@ public class UserController {
   @GetMapping
   public @ResponseBody
   Resources<UserResource> getUsers() {
-    List<UserResource> userResourceList = userRepository.findAll().stream().map(UserResource::new).collect(Collectors.toList());
+    List<UserResource> userResourceList = userRepository.findAll().stream().map(UserResource::new)
+        .collect(Collectors.toList());
 
     return new Resources<>(userResourceList);
   }
 
   @GetMapping("/{id}")
-  public @ResponseBody UserResource getUser(@PathVariable final Long id) {
+  public @ResponseBody
+  UserResource getUser(@PathVariable final Long id) {
     return new UserResource(userRepository.findOne(id));
   }
 

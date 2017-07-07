@@ -12,13 +12,16 @@ import org.springframework.hateoas.ResourceSupport;
  * Created by harsain on 4/7/17.
  */
 public class TweetResource extends ResourceSupport {
+
   private final Tweet tweet;
 
   public TweetResource(Tweet tweet) {
     String author = tweet.getAuthor().getName();
     this.tweet = tweet;
     this.add(linkTo(TweetController.class, author).withRel("all-tweets"));
-    this.add(linkTo(methodOn(TweetController.class, author).getTweet(author, tweet.getId())).withSelfRel());
+    this.add(linkTo(methodOn(TweetController.class, author).getLikes(author, tweet.getId())).withRel("likes-count"));
+    this.add(linkTo(methodOn(TweetController.class, author).getTweet(author, tweet.getId()))
+        .withSelfRel());
   }
 
   public Tweet getTweet() {
