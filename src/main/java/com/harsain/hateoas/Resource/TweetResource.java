@@ -17,7 +17,6 @@ public class TweetResource extends ResourceSupport {
   public TweetResource(Tweet tweet) {
     String author = tweet.getAuthor().getName();
     this.tweet = tweet;
-    this.add( new Link(tweet.getContent(), "tweet-content"));
     this.add(linkTo(TweetController.class, author).withRel("all-tweets"));
     this.add(linkTo(methodOn(TweetController.class, author).getTweet(author, tweet.getId())).withSelfRel());
   }
